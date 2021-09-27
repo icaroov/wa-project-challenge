@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: wa_frontend_dev
+    image: wa_frontend_dev
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./src:/frontend/app/src
+    ports:
+      - 3000:3000
