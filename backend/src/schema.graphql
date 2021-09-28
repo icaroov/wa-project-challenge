@@ -5,10 +5,20 @@
 type Student {
   id: String!
   name: String!
-  cpf: Float!
+  cpf: Int!
   email: String!
 }
 
 type Query {
   getAllStudents: [Student!]!
+}
+
+type Mutation {
+  createStudent(student: CreateStudentDTO!): Student!
+}
+
+input CreateStudentDTO {
+  name: String!
+  cpf: Int!
+  email: String!
 }
