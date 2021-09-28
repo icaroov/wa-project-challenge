@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+      target: development
+    volumes:
+      - ./backend:/backend/app
+      - /backend/app/node_modules/
+    command: npm run start:dev
+    depends_on:
+      - postgres
+    environment:
+      NODE_ENV: development
+      PORT: 5000
+      DATABASE_URL: postgres://user:password@postgres:5432/db
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+      target: development
+    volumes:
+      - ./frontend:/frontend/app/
+      - /frontend/app/node_modules
+    command: yarn start
+    ports:
+      - 3000:3000
+    links:
+      - backend
+
+  postgres:
+    image: postgres:10.4
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    ports:
+      - 35000:5432
+
+  postgres_admin:
+    image: dpage/pgadmin4:4.28
+    depends_on: 
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - 5050:80
