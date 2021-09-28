@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql'
+import { Field, Int, ObjectType } from '@nestjs/graphql'
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @ObjectType()
@@ -12,7 +12,7 @@ export class Student {
   @Column()
   name: string
 
-  @Field()
+  @Field(() => Int)
   @Column()
   cpf: number
 
