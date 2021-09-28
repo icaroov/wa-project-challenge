@@ -12,11 +12,27 @@ export class StudentService {
     private readonly studentRepository: Repository<Student>,
   ) {}
 
+  public create(student: CreateStudentDTO): Promise<Student> {
+    return this.studentRepository.save(student)
+  }
+
   public findAll(): Promise<Student[]> {
     return this.studentRepository.find()
   }
 
-  public create(student: CreateStudentDTO): Promise<Student> {
-    return this.studentRepository.save(student)
+  public findById(id: string): Promise<Student> {
+    return this.studentRepository.findOne(id)
+  }
+
+  public findByEmail(email: string): Promise<Student> {
+    return this.studentRepository.findOne({ email })
+  }
+
+  public findByName(name: string): Promise<Student> {
+    return this.studentRepository.findOne({ name })
+  }
+
+  public findByCpf(cpf: number): Promise<Student> {
+    return this.studentRepository.findOne({ cpf })
   }
 }

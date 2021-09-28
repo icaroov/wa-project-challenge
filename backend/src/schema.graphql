@@ -11,6 +11,10 @@ type Student {
 
 type Query {
   getAllStudents: [Student!]!
+  getStudentById(id: String!): Student!
+  getStudentByEmail(email: String!): Student!
+  getStudentByName(name: String!): Student!
+  getStudentByCpf(cpf: Float!): Student!
 }
 
 type Mutation {
