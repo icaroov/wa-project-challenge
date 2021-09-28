@@ -34,6 +34,7 @@ services:
       - backend
 
   postgres:
+    container_name: postgresql-test
     image: postgres:10.4
     environment:
       POSTGRES_USER: user

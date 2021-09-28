@@ -1,0 +1,14 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Student {
+  id: String!
+  name: String!
+  cpf: Float!
+  email: String!
+}
+
+type Query {
+  getAllStudents: [Student!]!
+}
