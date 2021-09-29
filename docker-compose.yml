@@ -24,9 +24,11 @@ services:
       dockerfile: Dockerfile
       context: ./frontend
       target: development
+    environment:
+      CHOKIDAR_USEPOLLING: true
     volumes:
-      - ./frontend:/frontend/app/
-      - /frontend/app/node_modules
+      - ./frontend:/frontend/app
+      - /frontend/app/node_modules/
     command: yarn start
     ports:
       - 3000:3000
@@ -34,7 +36,6 @@ services:
       - backend
 
   postgres:
-    container_name: postgresql-test
     image: postgres:10.4
     environment:
       POSTGRES_USER: user
