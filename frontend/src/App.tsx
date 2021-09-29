@@ -1,10 +1,15 @@
+import { ApolloProvider } from '@apollo/client'
+
+import { client } from './config/apolloClient.config'
+import ListUsers from './components/ListUsers'
+
 import './App.css'
 
 function App() {
   return (
-    <div className='App'>
-      <h1>Hello World</h1>
-    </div>
+    <ApolloProvider client={client}>
+      <ListUsers />
+    </ApolloProvider>
   )
 }
 
