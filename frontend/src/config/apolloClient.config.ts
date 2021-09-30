@@ -16,4 +16,13 @@ const link = from([
   new HttpLink({ uri: 'http://localhost:5000/graphql' }),
 ])
 
-export const client = new ApolloClient({ link, cache: new InMemoryCache() })
+export const client = new ApolloClient({
+  link,
+  cache: new InMemoryCache({
+    typePolicies: {
+      Student: {
+        keyFields: ['name', 'email'],
+      },
+    },
+  }),
+})
