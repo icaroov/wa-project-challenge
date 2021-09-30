@@ -71,6 +71,11 @@
   }
 }
 
+.error {
+  text-align: center;
+  font-size: 5rem;
+}
+
 .list {
   font-size: 2rem;
 

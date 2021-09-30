@@ -44,7 +44,8 @@ const ListUsers = () => {
     if (newFilter) setFilteredData(newFilter)
   }
 
-  if (error) return <p>Error...</p>
+  if (error)
+    return <h1 className='error'>Ops... Infelizmente algo deu errado. 😕</h1>
 
   return (
     <div className={styles.container}>
