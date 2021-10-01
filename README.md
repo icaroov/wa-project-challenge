@@ -30,7 +30,7 @@ Para executar o modo `production` basta executar:
 docker-compose -f docker-compose.prod.yml up
 ```
 
-O modo `development` permite a sincronização do código local com o código que está no container, e é necessário instalar as depências antes de executar o `docker-compose`.
+O modo `development` permite a sincronização do código local com o código que está no container, e é necessário instalar as dependências antes de executar o `docker-compose`.
 
 ```
 # Instale as dependências
@@ -65,14 +65,32 @@ docker-compose -f docker-compose.dev.yml up
 - Registrar um aluno
 
 ```
-  mutation {
-    createStudent(name: "name", cpf: 12345678900, email: "test@teste.com") {
-      id
-      name
-      cpf
-      email
+mutation {
+  createStudent(
+    student: {
+      name: "Jhon Doe"
+      cpf: 123456789
+      email: "jhon@gmail.com"
     }
+  ) {
+    id
+    name
+    cpf
+    email
   }
+}
+```
+
+- Selecionar aluno por e-mail
+
+```
+query {
+  getStudentByEmail(email: "jhon@gmail.com") {
+    id
+    name
+    cpf
+  }
+}
 ```
 
 Todo o Schema pode ser encontrado dentro de `/backend/src/schema.graphql`.
