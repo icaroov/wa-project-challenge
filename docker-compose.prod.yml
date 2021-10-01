@@ -1,41 +1,36 @@
-version: "3.8"
+version: '3.8'
 
 services:
   backend:
+    container_name: wa_backend_prod
     build:
       dockerfile: Dockerfile
       context: ./backend
-      target: development
-    volumes:
-      - ./backend:/backend/app
-      - /backend/app/node_modules/
-    command: npm run start:dev
+      target: production
+    command: npm run start
     depends_on:
       - postgres
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
       PORT: 5000
       DATABASE_URL: postgres://user:password@postgres:5432/db
     ports:
-      - "5000:5000"
+      - '5000:5000'
 
   frontend:
+    container_name: wa_frontend_prod
+    image: wa_frontend_prod
     build:
       dockerfile: Dockerfile
       context: ./frontend
-      target: development
-    environment:
-      CHOKIDAR_USEPOLLING: true
-    volumes:
-      - ./frontend:/frontend/app
-      - /frontend/app/node_modules/
-    command: yarn start
+      target: production
     ports:
-      - 3000:3000
+      - 8081:80
     links:
       - backend
 
   postgres:
+    container_name: wa_postgres_prod
     image: postgres:10.4
     environment:
       POSTGRES_USER: user
@@ -45,8 +40,9 @@ services:
       - 35000:5432
 
   postgres_admin:
+    container_name: wa_postgres_admin_prod
     image: dpage/pgadmin4:4.28
-    depends_on: 
+    depends_on:
       - postgres
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
