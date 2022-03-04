@@ -22,7 +22,7 @@ cd wa-project-challenge
 
 Com Docker instalado, existem duas opções: a `production` e a `development`.
 
-Em `production` o Frontend está sendo distribuído de forma estática em um servidor Http NGINX através do Dockerfile.
+Em `production` o Frontend está sendo distribuído de forma estática em um servidor Http [NGINX](https://www.nginx.com/) através do Dockerfile.
 
 Para executar o modo `production` basta executar:
 
@@ -30,7 +30,7 @@ Para executar o modo `production` basta executar:
 docker-compose -f docker-compose.prod.yml up
 ```
 
-O modo `development` permite a sincronização do código local com o código que está no container, e é necessário instalar as dependências antes de executar o `docker-compose`.
+O modo `development` permite a sincronização do código local com o código que está no container através dos `volumes`, e é necessário instalar as dependências antes de executar o `docker-compose`.
 
 ```
 # Instale as dependências
